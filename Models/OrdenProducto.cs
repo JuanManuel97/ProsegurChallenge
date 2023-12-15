@@ -11,7 +11,10 @@ namespace ProsegurChallenge.Models
         [Key, Column(Order = 2)]
         public int IdProducto { get; set; }
 
+        [ForeignKey("IdOrden")]
         public virtual Orden Orden { get; set; }
+
+        [ForeignKey("IdProducto")]
         public virtual Producto Producto { get; set; }
     }
 }

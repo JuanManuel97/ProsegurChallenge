@@ -13,7 +13,10 @@ namespace ProsegurChallenge.Models
 
         public decimal CantidadPorUnidad { get; set; }
 
+        [ForeignKey("IdProducto")]
         public virtual Producto Producto { get; set; }
+
+        [ForeignKey("IdMateriaPrima")]
         public virtual MateriaPrima MateriaPrima { get; set; }
     }
 }

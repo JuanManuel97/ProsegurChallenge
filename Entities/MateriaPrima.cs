@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace ProsegurChallenge.Entities
 {
@@ -10,5 +11,7 @@ namespace ProsegurChallenge.Entities
         public decimal Cantidad { get; set; } = 0;
         public string DescripcionCantidad { get; set; }
         public decimal Precio { get; set; } = 0;
+
+        public ICollection<ProductoMateriaPrima> ProductoMateriaPrimas { get; set; }
     }
 }

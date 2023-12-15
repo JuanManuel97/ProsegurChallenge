@@ -150,7 +150,8 @@ namespace ProsegurChallenge.Migrations
                 columns: table => new
                 {
                     IdOrden = table.Column<int>(type: "INTEGER", nullable: false),
-                    IdProducto = table.Column<int>(type: "INTEGER", nullable: false)
+                    IdProducto = table.Column<int>(type: "INTEGER", nullable: false),
+                    CantidadProducto = table.Column<decimal>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {

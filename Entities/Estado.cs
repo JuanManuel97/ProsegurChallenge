@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace ProsegurChallenge.Entities
 {
@@ -7,5 +8,7 @@ namespace ProsegurChallenge.Entities
         [Key]
         public int IdEstado { get; set; }
         public string Descripcion { get; set; }
+
+        public ICollection<Orden> Ordenes { get; set; }
     }
 }

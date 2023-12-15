@@ -99,6 +99,9 @@ namespace ProsegurChallenge.Migrations
                         .HasColumnType("INTEGER")
                         .HasColumnOrder(2);
 
+                    b.Property<decimal>("CantidadProducto")
+                        .HasColumnType("TEXT");
+
                     b.HasKey("IdOrden", "IdProducto");
 
                     b.HasIndex("IdProducto");
@@ -179,7 +182,7 @@ namespace ProsegurChallenge.Migrations
             modelBuilder.Entity("ProsegurChallenge.Entities.Orden", b =>
                 {
                     b.HasOne("ProsegurChallenge.Entities.Estado", "Estado")
-                        .WithMany()
+                        .WithMany("Ordenes")
                         .HasForeignKey("IdEstado")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -190,13 +193,13 @@ namespace ProsegurChallenge.Migrations
             modelBuilder.Entity("ProsegurChallenge.Entities.OrdenProducto", b =>
                 {
                     b.HasOne("ProsegurChallenge.Entities.Orden", "Orden")
-                        .WithMany()
+                        .WithMany("OrdenProductos")
                         .HasForeignKey("IdOrden")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("ProsegurChallenge.Entities.Producto", "Producto")
-                        .WithMany()
+                        .WithMany("OrdenProductos")
                         .HasForeignKey("IdProducto")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -209,13 +212,13 @@ namespace ProsegurChallenge.Migrations
             modelBuilder.Entity("ProsegurChallenge.Entities.ProductoMateriaPrima", b =>
                 {
                     b.HasOne("ProsegurChallenge.Entities.MateriaPrima", "MateriaPrima")
-                        .WithMany()
+                        .WithMany("ProductoMateriaPrimas")
                         .HasForeignKey("IdMateriaPrima")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("ProsegurChallenge.Entities.Producto", "Producto")
-                        .WithMany()
+                        .WithMany("ProductoMateriaPrimas")
                         .HasForeignKey("IdProducto")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -234,6 +237,28 @@ namespace ProsegurChallenge.Migrations
                         .IsRequired();
 
                     b.Navigation("Rol");
+                });
+
+            modelBuilder.Entity("ProsegurChallenge.Entities.Estado", b =>
+                {
+                    b.Navigation("Ordenes");
+                });
+
+            modelBuilder.Entity("ProsegurChallenge.Entities.MateriaPrima", b =>
+                {
+                    b.Navigation("ProductoMateriaPrimas");
+                });
+
+            modelBuilder.Entity("ProsegurChallenge.Entities.Orden", b =>
+                {
+                    b.Navigation("OrdenProductos");
+                });
+
+            modelBuilder.Entity("ProsegurChallenge.Entities.Producto", b =>
+                {
+                    b.Navigation("OrdenProductos");
+
+                    b.Navigation("ProductoMateriaPrimas");
                 });
 
             modelBuilder.Entity("ProsegurChallenge.Entities.Rol", b =>

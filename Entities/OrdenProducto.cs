@@ -10,6 +10,7 @@ namespace ProsegurChallenge.Entities
 
         [Column(Order = 2)]
         public int IdProducto { get; set; }
+        public decimal CantidadProducto { get; set; }
 
         [ForeignKey("IdOrden")]
         public virtual Orden Orden { get; set; }

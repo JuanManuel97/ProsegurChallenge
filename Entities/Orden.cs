@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ProsegurChallenge.Entities
@@ -13,5 +14,7 @@ namespace ProsegurChallenge.Entities
         public int IdEstado { get; set; }
 
         public virtual Estado Estado { get; set; }
+
+        public ICollection<OrdenProducto> OrdenProductos { get; set; }
     }
 }

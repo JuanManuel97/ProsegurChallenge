@@ -27,13 +27,7 @@ namespace ProsegurChallenge.Data
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<OrdenProducto>()
-                .HasKey(op => new { op.IdOrden, op.IdProducto });
-
-            modelBuilder.Entity<ProductoMateriaPrima>()
-                .HasKey(pm => new { pm.IdProducto, pm.IdMateriaPrima });
-
+        {         
             modelBuilder.Entity<Usuario>()
                 .Property(u => u.IdUsuario).ValueGeneratedOnAdd();
 
@@ -44,6 +38,37 @@ namespace ProsegurChallenge.Data
                 .HasOne(u => u.Rol)
                 .WithMany(r => r.Usuarios)
                 .HasForeignKey(u => u.IdRol);
+
+            modelBuilder.Entity<Orden>()
+                .HasOne(o => o.Estado)
+                .WithMany(e => e.Ordenes)
+                .HasForeignKey(o => o.IdEstado);
+
+            modelBuilder.Entity<OrdenProducto>()
+                .HasKey(op => new { op.IdOrden, op.IdProducto });
+
+            modelBuilder.Entity<OrdenProducto>()
+                .HasOne(op => op.Orden)
+                .WithMany(o => o.OrdenProductos)
+                .HasForeignKey(op => op.IdOrden);
+
+            modelBuilder.Entity<OrdenProducto>()
+                .HasOne(op => op.Producto)
+                .WithMany(p => p.OrdenProductos)
+                .HasForeignKey(op => op.IdProducto);
+
+            modelBuilder.Entity<ProductoMateriaPrima>()
+                .HasKey(pm => new { pm.IdProducto, pm.IdMateriaPrima });
+
+            modelBuilder.Entity<ProductoMateriaPrima>()
+                .HasOne(pm => pm.Producto)
+                .WithMany(p => p.ProductoMateriaPrimas)
+                .HasForeignKey(pm => pm.IdProducto);
+
+            modelBuilder.Entity<ProductoMateriaPrima>()
+                .HasOne(pm => pm.MateriaPrima)
+                .WithMany(p => p.ProductoMateriaPrimas)
+                .HasForeignKey(pm => pm.IdMateriaPrima);
         }
     }
 }

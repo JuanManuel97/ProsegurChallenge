@@ -10,7 +10,7 @@ namespace ProsegurChallenge.Data
         public DbSet<Rol> Roles { get; set; }
         public DbSet<MateriaPrima> MateriaPrimas { get; set; }
         public DbSet<Orden> Ordenes { get; set; }
-        public DbSet<Estado> Estados { get; set; }
+        public DbSet<EstadoOrden> EstadoOrdenes { get; set; }
         public DbSet<Producto> Productos { get; set; }
         public DbSet<Ciudad> Ciudades { get; set; }
         public DbSet<ProductoMateriaPrima> ProductoMateriaPrimas { get; set; }
@@ -29,10 +29,25 @@ namespace ProsegurChallenge.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {         
             modelBuilder.Entity<Usuario>()
-                .Property(u => u.IdUsuario).ValueGeneratedOnAdd();
+                .Property(u => u.IdUsuario).ValueGeneratedOnAdd();            
 
             modelBuilder.Entity<Rol>()
                 .Property(r => r.IdRol).ValueGeneratedOnAdd();
+
+            modelBuilder.Entity<MateriaPrima>()
+                .Property(x => x.IdMateriaPrima).ValueGeneratedOnAdd();
+
+            modelBuilder.Entity<Orden>()
+                .Property(x => x.IdOrden).ValueGeneratedOnAdd();
+
+            modelBuilder.Entity<Ciudad>()
+                .Property(x => x.IdCiudad).ValueGeneratedOnAdd();
+
+            modelBuilder.Entity<EstadoOrden>()
+                .Property(x => x.IdEstado).ValueGeneratedOnAdd();
+
+            modelBuilder.Entity<Producto>()
+                .Property(x => x.IdProducto).ValueGeneratedOnAdd();
 
             modelBuilder.Entity<Usuario>()
                 .HasOne(u => u.Rol)

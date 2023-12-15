@@ -2,7 +2,7 @@
 
 namespace ProsegurChallenge.Models
 {
-    public class CrearUsuarioModel
+    public class UsuarioModel
     {
         public string Nombre { get; set; }
 

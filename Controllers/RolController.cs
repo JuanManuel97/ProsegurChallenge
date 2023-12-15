@@ -21,7 +21,7 @@ namespace ProsegurChallenge.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Rol>> CrearRol(CrearRolModel rol)
+        public async Task<ActionResult<Rol>> CrearRol(RolModel rol)
         {
             var rolCreado = new Rol
             {

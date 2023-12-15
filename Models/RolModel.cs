@@ -1,6 +1,6 @@
 ﻿namespace ProsegurChallenge.Models
 {
-    public class CrearRolModel
+    public class RolModel
     {
         public string Descripcion { get; set; }
     }

@@ -11,33 +11,33 @@ namespace ProsegurChallenge.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UsuarioController : ControllerBase
+    public class ProductoController : ControllerBase
     {
         private readonly AppDBContext _context;
 
-        public UsuarioController(AppDBContext context)
+        public ProductoController(AppDBContext context)
         {
             _context = context;
         }
 
         [HttpPost]
-        public async Task<ActionResult<Usuario>> CrearUsuario([FromBody] UsuarioModel usuario)
+        public async Task<ActionResult<Producto>> CrearProducto(ProductoModel producto)
         {
-            var usuarioCreado = new Usuario
+            var productoCreado = new Producto
             {
-                Nombre = usuario.Nombre,
-                IdRol = usuario.IdRol
+                Descripcion = producto.Descripcion,
+                PrecioVenta = producto.PrecioVenta
             };
-            _context.Usuarios.Add(usuarioCreado);
+            _context.Productos.Add(productoCreado);
             await _context.SaveChangesAsync();
 
-            return Ok(usuario);
+            return Ok(producto);
         }
 
         [HttpGet]
-        public async Task<ActionResult<Usuario>> ObtenerUsuario(int idUsuario)
+        public async Task<ActionResult<Producto>> ObtenerProducto(int idProducto)
         {
-            return Ok(await _context.Usuarios.Where(u => u.IdUsuario == idUsuario).ToListAsync());
+            return Ok(await _context.Productos.Where(p => p.IdProducto == idProducto).ToListAsync());
         }
     }
 }

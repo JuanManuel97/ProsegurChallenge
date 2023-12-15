@@ -13,7 +13,7 @@ namespace ProsegurChallenge.Entities
         [ForeignKey("Estado")]
         public int IdEstado { get; set; }
 
-        public virtual Estado Estado { get; set; }
+        public virtual EstadoOrden Estado { get; set; }
 
         public ICollection<OrdenProducto> OrdenProductos { get; set; }
     }

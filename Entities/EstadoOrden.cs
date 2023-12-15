@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ProsegurChallenge.Entities
 {
-    public class Estado
+    public class EstadoOrden
     {
         [Key]
         public int IdEstado { get; set; }

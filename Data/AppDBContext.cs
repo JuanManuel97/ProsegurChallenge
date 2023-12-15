@@ -18,6 +18,21 @@ namespace ProsegurChallenge.Data
 
         public AppDBContext(DbContextOptions<AppDBContext> options) : base(options)
         {
-        }        
+
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlite(@"DataSource=CafeteriaDatabase.db;");
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<OrdenProducto>()
+                .HasKey(op => new { op.IdOrden, op.IdProducto });
+
+            modelBuilder.Entity<ProductoMateriaPrima>()
+                .HasKey(pm => new { pm.IdProducto, pm.IdMateriaPrima });
+        }
     }
 }

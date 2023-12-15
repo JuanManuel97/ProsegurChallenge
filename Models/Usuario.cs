@@ -1,9 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ProsegurChallenge.Models
 {
     public class Usuario
     {
+        [Key]
         public int IdUsuario { get; set; }
         public string Descripcion { get; set; }
 

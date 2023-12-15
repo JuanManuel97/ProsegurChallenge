@@ -1,9 +1,12 @@
-﻿namespace ProsegurChallenge.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace ProsegurChallenge.Models
 {
     public class Producto
     {
+        [Key]
         public int IdProducto { get; set; }
         public string Descripcion { get; set; }
-        //public decimal Precio { get; set;} de venta? de costo? TODO
+        public decimal PrecioVenta { get; set;}
     }
 }

@@ -5,10 +5,10 @@ namespace ProsegurChallenge.Models
 {
     public class ProductoMateriaPrima
     {
-        [Key, Column(Order = 1)]
+        [Column(Order = 1)]
         public int IdProducto { get; set; }
 
-        [Key, Column(Order = 2)]
+        [Column(Order = 2)]
         public int IdMateriaPrima { get; set; }
 
         public decimal CantidadPorUnidad { get; set; }

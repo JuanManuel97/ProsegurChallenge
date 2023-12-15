@@ -1,0 +1,9 @@
+﻿namespace ProsegurChallenge.Models
+{
+    public class Producto
+    {
+        public int IdProducto { get; set; }
+        public string Descripcion { get; set; }
+        //public decimal Precio { get; set;} de venta? de costo? TODO
+    }
+}

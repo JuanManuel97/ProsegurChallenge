@@ -16,7 +16,7 @@ namespace ProsegurChallenge.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.0");
 
-            modelBuilder.Entity("ProsegurChallenge.Models.Ciudad", b =>
+            modelBuilder.Entity("ProsegurChallenge.Entities.Ciudad", b =>
                 {
                     b.Property<int>("IdCiudad")
                         .ValueGeneratedOnAdd()
@@ -33,7 +33,7 @@ namespace ProsegurChallenge.Migrations
                     b.ToTable("Ciudades");
                 });
 
-            modelBuilder.Entity("ProsegurChallenge.Models.Estado", b =>
+            modelBuilder.Entity("ProsegurChallenge.Entities.Estado", b =>
                 {
                     b.Property<int>("IdEstado")
                         .ValueGeneratedOnAdd()
@@ -47,7 +47,7 @@ namespace ProsegurChallenge.Migrations
                     b.ToTable("Estados");
                 });
 
-            modelBuilder.Entity("ProsegurChallenge.Models.MateriaPrima", b =>
+            modelBuilder.Entity("ProsegurChallenge.Entities.MateriaPrima", b =>
                 {
                     b.Property<int>("IdMateriaPrima")
                         .ValueGeneratedOnAdd()
@@ -70,7 +70,7 @@ namespace ProsegurChallenge.Migrations
                     b.ToTable("MateriaPrimas");
                 });
 
-            modelBuilder.Entity("ProsegurChallenge.Models.Orden", b =>
+            modelBuilder.Entity("ProsegurChallenge.Entities.Orden", b =>
                 {
                     b.Property<int>("IdOrden")
                         .ValueGeneratedOnAdd()
@@ -89,7 +89,7 @@ namespace ProsegurChallenge.Migrations
                     b.ToTable("Ordenes");
                 });
 
-            modelBuilder.Entity("ProsegurChallenge.Models.OrdenProducto", b =>
+            modelBuilder.Entity("ProsegurChallenge.Entities.OrdenProducto", b =>
                 {
                     b.Property<int>("IdOrden")
                         .HasColumnType("INTEGER")
@@ -106,7 +106,7 @@ namespace ProsegurChallenge.Migrations
                     b.ToTable("OrdenProductos");
                 });
 
-            modelBuilder.Entity("ProsegurChallenge.Models.Producto", b =>
+            modelBuilder.Entity("ProsegurChallenge.Entities.Producto", b =>
                 {
                     b.Property<int>("IdProducto")
                         .ValueGeneratedOnAdd()
@@ -123,7 +123,7 @@ namespace ProsegurChallenge.Migrations
                     b.ToTable("Productos");
                 });
 
-            modelBuilder.Entity("ProsegurChallenge.Models.ProductoMateriaPrima", b =>
+            modelBuilder.Entity("ProsegurChallenge.Entities.ProductoMateriaPrima", b =>
                 {
                     b.Property<int>("IdProducto")
                         .HasColumnType("INTEGER")
@@ -143,7 +143,7 @@ namespace ProsegurChallenge.Migrations
                     b.ToTable("ProductoMateriaPrimas");
                 });
 
-            modelBuilder.Entity("ProsegurChallenge.Models.Rol", b =>
+            modelBuilder.Entity("ProsegurChallenge.Entities.Rol", b =>
                 {
                     b.Property<int>("IdRol")
                         .ValueGeneratedOnAdd()
@@ -157,17 +157,17 @@ namespace ProsegurChallenge.Migrations
                     b.ToTable("Roles");
                 });
 
-            modelBuilder.Entity("ProsegurChallenge.Models.Usuario", b =>
+            modelBuilder.Entity("ProsegurChallenge.Entities.Usuario", b =>
                 {
                     b.Property<int>("IdUsuario")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Descripcion")
-                        .HasColumnType("TEXT");
-
                     b.Property<int>("IdRol")
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("Nombre")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("IdUsuario");
 
@@ -176,9 +176,9 @@ namespace ProsegurChallenge.Migrations
                     b.ToTable("Usuarios");
                 });
 
-            modelBuilder.Entity("ProsegurChallenge.Models.Orden", b =>
+            modelBuilder.Entity("ProsegurChallenge.Entities.Orden", b =>
                 {
-                    b.HasOne("ProsegurChallenge.Models.Estado", "Estado")
+                    b.HasOne("ProsegurChallenge.Entities.Estado", "Estado")
                         .WithMany()
                         .HasForeignKey("IdEstado")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -187,15 +187,15 @@ namespace ProsegurChallenge.Migrations
                     b.Navigation("Estado");
                 });
 
-            modelBuilder.Entity("ProsegurChallenge.Models.OrdenProducto", b =>
+            modelBuilder.Entity("ProsegurChallenge.Entities.OrdenProducto", b =>
                 {
-                    b.HasOne("ProsegurChallenge.Models.Orden", "Orden")
+                    b.HasOne("ProsegurChallenge.Entities.Orden", "Orden")
                         .WithMany()
                         .HasForeignKey("IdOrden")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ProsegurChallenge.Models.Producto", "Producto")
+                    b.HasOne("ProsegurChallenge.Entities.Producto", "Producto")
                         .WithMany()
                         .HasForeignKey("IdProducto")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -206,15 +206,15 @@ namespace ProsegurChallenge.Migrations
                     b.Navigation("Producto");
                 });
 
-            modelBuilder.Entity("ProsegurChallenge.Models.ProductoMateriaPrima", b =>
+            modelBuilder.Entity("ProsegurChallenge.Entities.ProductoMateriaPrima", b =>
                 {
-                    b.HasOne("ProsegurChallenge.Models.MateriaPrima", "MateriaPrima")
+                    b.HasOne("ProsegurChallenge.Entities.MateriaPrima", "MateriaPrima")
                         .WithMany()
                         .HasForeignKey("IdMateriaPrima")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ProsegurChallenge.Models.Producto", "Producto")
+                    b.HasOne("ProsegurChallenge.Entities.Producto", "Producto")
                         .WithMany()
                         .HasForeignKey("IdProducto")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -225,15 +225,20 @@ namespace ProsegurChallenge.Migrations
                     b.Navigation("Producto");
                 });
 
-            modelBuilder.Entity("ProsegurChallenge.Models.Usuario", b =>
+            modelBuilder.Entity("ProsegurChallenge.Entities.Usuario", b =>
                 {
-                    b.HasOne("ProsegurChallenge.Models.Rol", "Rol")
-                        .WithMany()
+                    b.HasOne("ProsegurChallenge.Entities.Rol", "Rol")
+                        .WithMany("Usuarios")
                         .HasForeignKey("IdRol")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Rol");
+                });
+
+            modelBuilder.Entity("ProsegurChallenge.Entities.Rol", b =>
+                {
+                    b.Navigation("Usuarios");
                 });
 #pragma warning restore 612, 618
         }

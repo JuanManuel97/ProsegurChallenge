@@ -29,6 +29,11 @@ namespace ProsegurChallenge
         {
             services.AddControllers();
             services.AddDbContext<AppDBContext>(options => options.UseSqlite(Configuration.GetConnectionString("SQLiteConnection")));
+
+            services.AddControllers();
+
+            services.AddEndpointsApiExplorer();
+            services.AddSwaggerGen();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -37,6 +42,8 @@ namespace ProsegurChallenge
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseSwagger();
+                app.UseSwaggerUI();
             }
 
             app.UseHttpsRedirection();

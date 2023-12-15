@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ProsegurChallenge.Models
+namespace ProsegurChallenge.Entities
 {
     public class MateriaPrima
     {

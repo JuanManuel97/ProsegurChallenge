@@ -1,13 +1,13 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace ProsegurChallenge.Models
+namespace ProsegurChallenge.Entities
 {
     public class Usuario
     {
         [Key]
         public int IdUsuario { get; set; }
-        public string Descripcion { get; set; }
+        public string Nombre { get; set; }
 
         [ForeignKey("Rol")]
         public int IdRol { get; set; }

@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using ProsegurChallenge.Models;
+using ProsegurChallenge.Entities;
 using System.Security.Cryptography.X509Certificates;
 
 namespace ProsegurChallenge.Data
@@ -33,6 +33,17 @@ namespace ProsegurChallenge.Data
 
             modelBuilder.Entity<ProductoMateriaPrima>()
                 .HasKey(pm => new { pm.IdProducto, pm.IdMateriaPrima });
+
+            modelBuilder.Entity<Usuario>()
+                .Property(u => u.IdUsuario).ValueGeneratedOnAdd();
+
+            modelBuilder.Entity<Rol>()
+                .Property(r => r.IdRol).ValueGeneratedOnAdd();
+
+            modelBuilder.Entity<Usuario>()
+                .HasOne(u => u.Rol)
+                .WithMany(r => r.Usuarios)
+                .HasForeignKey(u => u.IdRol);
         }
     }
 }

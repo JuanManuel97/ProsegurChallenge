@@ -131,7 +131,7 @@ namespace ProsegurChallenge.Migrations
                 {
                     IdUsuario = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Descripcion = table.Column<string>(type: "TEXT", nullable: true),
+                    Nombre = table.Column<string>(type: "TEXT", nullable: true),
                     IdRol = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>

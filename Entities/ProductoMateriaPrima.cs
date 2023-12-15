@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 
-namespace ProsegurChallenge.Models
+namespace ProsegurChallenge.Entities
 {
     public class ProductoMateriaPrima
     {

@@ -22,7 +22,6 @@ namespace ProsegurChallenge
             var builder = WebApplication.CreateBuilder(args);
 
             builder.Services.AddDbContext<AppDBContext>(options => options.UseSqlite(builder.Configuration.GetConnectionString("SQLiteConnection")));
-
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
